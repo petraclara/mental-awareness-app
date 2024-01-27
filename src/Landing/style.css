@@ -1,0 +1,28 @@
+.landing {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.title {
+  color: #fff;
+  font-size: 40px;
+}
+.btn_started {
+  margin-top: 40px;
+  padding: 10px;
+  border-width: 1px;
+  color: #fff;
+  width: 20%;
+}
+.comment {
+  font-size: 40px;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
