@@ -1,0 +1,30 @@
+.Infocard {
+  width: 30%;
+  height: 180px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-radius: 20px;
+  align-items: center;
+}
+.info {
+  margin-left: 10px;
+}
+.infoTitle {
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+}
+.infoBottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center !important;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.infoBio {
+  background-color: transparent;
+  outline: none !important;
+  color: "white" !important;
+}

@@ -1,0 +1,26 @@
+.dash {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: scroll;
+}
+*,
+html,
+body {
+  margin: 0px;
+}
+.cardWrapper {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.comment {
+  font-size: 40px;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

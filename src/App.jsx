@@ -6,19 +6,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./Auth";
 import Dashboard from "./Dashboard";
 import Steps from "./Steps";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/steps" element={<Steps />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/steps" element={<Steps />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
