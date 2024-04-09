@@ -20,7 +20,7 @@ export default function Cards() {
         <div className="infoBottom">
           <div style={{ marginRight: "30px" }}>
             <button
-              style={{ border: `1px solid ${colors.border}`, color: "#FFF" }}
+              // style={{ border: `1px solid ${colors.border}`, color: "#FFF" }}
               className="infoBio"
             >
               Bio
@@ -35,7 +35,7 @@ export default function Cards() {
           >
             <i
               className="fa-regular fa-comment "
-              style={{ color: "#FFF", fontSize: "20px" }}
+              style={{ color: "#3d3d3d", fontSize: "20px" }}
             ></i>
           </div>
         </div>

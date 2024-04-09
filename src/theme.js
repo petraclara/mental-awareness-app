@@ -1,4 +1,4 @@
 export const colors = {
-  primary: "#070939",
-  border: "#6A369C",
+  primary: "#325343",
+  border: "#46724e",
 };

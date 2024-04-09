@@ -59,6 +59,7 @@ export default function Auth() {
         password: password,
       };
       const res = await axios.post("http://localhost:4000/users/login", body);
+      
       console.log(res.data);
       localStorage.setItem("tokenClare", res.data.token);
       toast.success("Logged in!", {

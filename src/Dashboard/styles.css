@@ -3,6 +3,7 @@
   height: 100vh;
   margin: 0;
   overflow: scroll;
+  
 }
 *,
 html,
@@ -24,3 +25,4 @@ body {
   bottom: 0;
   right: 0;
 }
+

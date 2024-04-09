@@ -9,20 +9,34 @@
 }
 
 .title {
-  color: #fff;
-  font-size: 40px;
+  color: #fff; ;
+  font-size: 60px;
 }
 .btn_started {
   margin-top: 40px;
   padding: 10px;
   border-width: 1px;
-  color: #fff;
+  /* color: #fff; */
   width: 20%;
 }
 .comment {
   font-size: 40px;
-  color: #fff;
+  color: #c41414;
   position: absolute;
   bottom: 0;
   right: 0;
 }
+.chatbot-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background-color: #FFF000;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* Ensure the chatbot is above other elements */
+}
+
+
+            

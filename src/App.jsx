@@ -1,24 +1,26 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import Landing from "./Landing";
+// App.js
+
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./Landing";
 import Auth from "./Auth";
 import Dashboard from "./Dashboard";
-import Steps from "./Steps";
+import Patient from "./Patient";
+import Therapist from "./Therapist";
+import NavBar from "./Dashboard/Navbar";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <BrowserRouter>
+        <NavBar /> {/* Render the Navbar component */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/steps" element={<Steps />} />
+          <Route path="/patient" element={<Patient />} />
+          <Route path="/therapist" element={<Therapist />} />
         </Routes>
       </BrowserRouter>
     </>
