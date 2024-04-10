@@ -1,14 +1,15 @@
 // App.js
 
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Landing from './Landing';
-import Auth from './Auth';
-import Dashboard from './Dashboard';
-import Patient from './Patient';
-import Therapist from './Therapist';
-import NavBar from './Dashboard/Navbar';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./Landing";
+import Auth from "./Auth";
+import Dashboard from "./Dashboard";
+import Patient from "./Patient";
+import Therapist from "./Therapist";
+import NavBar from "./Dashboard/Navbar";
+import "react-toastify/dist/ReactToastify.css";
+import Messages from "./Messages";
 
 function App() {
   const [userPreferences, setUserPreferences] = useState([]);
@@ -22,14 +23,15 @@ function App() {
       <BrowserRouter>
         <NavBar /> {/* Render the Navbar component */}
         <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/auth' element={<Auth />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/chat" element={<Messages />} />
           <Route
-            path='/dashboard'
+            path="/dashboard"
             element={<Dashboard userPreferences={userPreferences} />}
           />
           <Route
-            path='/patient'
+            path="/patient"
             element={
               <Patient
                 preferences={userPreferences}
@@ -37,7 +39,7 @@ function App() {
               />
             }
           />
-          <Route path='/therapist' element={<Therapist />} />
+          <Route path="/therapist" element={<Therapist />} />
         </Routes>
       </BrowserRouter>
     </>
