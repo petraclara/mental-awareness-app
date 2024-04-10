@@ -22,10 +22,7 @@ export default function Auth() {
         confirm: confirm,
         password: password,
       };
-      const res = await axios.post(
-        "http://localhost:4000/users/register",
-        body
-      );
+      const res = await axios.post("http://localhost:4000/auth/register", body);
       console.log(res.data);
       toast.success(res.data?.message, {
         position: "top-right",
@@ -58,8 +55,8 @@ export default function Auth() {
         email: email,
         password: password,
       };
-      const res = await axios.post("http://localhost:4000/users/login", body);
-      
+      const res = await axios.post("http://localhost:4000/auth/login", body);
+
       console.log(res.data);
       localStorage.setItem("tokenClare", res.data.token);
       toast.success("Logged in!", {
