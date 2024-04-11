@@ -10,6 +10,7 @@ import Therapist from "./Therapist";
 import NavBar from "./Dashboard/Navbar";
 import "react-toastify/dist/ReactToastify.css";
 import Messages from "./Messages";
+import Chat from "./Messages/Chat";
 import TherapistSignup from "./Auth/TherapistSignup";
 import TherapistDashboard from "./Dashboard/TherapistDasboard";
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/chat" element={<Messages />} />
+          <Route path="/chat/:id/:recId" element={<Chat />} />
           <Route
             path="/dashboard"
             element={<Dashboard userPreferences={userPreferences} />}
