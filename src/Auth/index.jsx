@@ -202,8 +202,18 @@ export default function Auth() {
 
       console.log(res.data);
       localStorage.setItem("tokenClare", res.data.token);
-      toast.success("Logged in!", { /* Toast success message */ });
-      navigate("/patient");
+      localStorage.setItem("userId", res.data.id);
+      toast.success("Logged in!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      navigate("/dashboard");
       setActive("login");
     } catch (err) {
       console.log(err.response.data);

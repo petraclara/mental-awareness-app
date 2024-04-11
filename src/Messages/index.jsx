@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./message.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Messages() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const socket = new WebSocket("ws://localhost:4040/users");
     socket.onopen = () => {
@@ -11,10 +14,14 @@ function Messages() {
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === "INITIAL_DATA") {
-        console.log(message.data);
-        setUsers(message.data);
+        console.log(message, "here");
+        if (message.data.length > 0 && message.dataType === "USER") {
+          setUsers(message.data);
+        }
       } else if (message.type === "UPDATE_DATA") {
-        setUsers(message.data);
+        if (message.data.length > 0 && message.dataType === "USER") {
+          setUsers(message.data);
+        }
       }
     };
     console.log(users);
@@ -23,10 +30,31 @@ function Messages() {
     };
   }, []);
   return (
-    <div className="w-screen h-screen bg-[red]" style={{ height: "100vh" }}>
+    <div
+      className="w-screen h-screen bg-[red]"
+      style={{ height: "100vh", width: "100vw" }}
+    >
       {users?.map((user, index) => {
         return (
-          <div key={index} className="bg-[red]">
+          <div
+            onClick={async () => {
+              const senderId = localStorage.getItem("userId");
+              const body = {
+                receiverId: user?._id,
+                senderId: senderId,
+              };
+              const res = await axios.post(
+                "http://localhost:4000/conversation",
+                body
+              );
+              console.log(res);
+              if (res.status === 201) {
+                navigate(`/chat/${res.data?.data?._id}/${user?._id}`);
+              }
+            }}
+            key={index}
+            className="bg-[red]"
+          >
             <p className="text-[black]">{user?.email}</p>
           </div>
         );
