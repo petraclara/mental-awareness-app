@@ -21,6 +21,7 @@ export default function Auth() {
         email: email,
         confirm: confirm,
         password: password,
+        type: "USER",
       };
       const res = await axios.post("http://localhost:4000/auth/register", body);
       console.log(res.data);

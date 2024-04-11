@@ -11,6 +11,7 @@ function Messages() {
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === "INITIAL_DATA") {
+        console.log(message.data);
         setUsers(message.data);
       } else if (message.type === "UPDATE_DATA") {
         setUsers(message.data);
