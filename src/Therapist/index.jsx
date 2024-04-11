@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import "./style.css";
 
 const Therapist = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
@@ -13,16 +15,15 @@ const Therapist = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send form data to backend server
       const response = await axios.post('http://localhost:4000/therapist/add', formData);
       console.log('Form submission successful:', response.data);
-      // Clear form fields after successful submission
       setFormData({
         name: '',
         gender: '',
@@ -31,8 +32,24 @@ const Therapist = () => {
         race: '',
         age: ''
       });
+      navigateToDashboard();
     } catch (error) {
       console.error('Form submission error:', error);
+    }
+  };
+
+  const navigateToDashboard = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:4000/therapist-request', // Adjust the endpoint accordingly
+        formData // Pass any additional parameters as needed
+      );
+
+      navigate('/therapist-dashboard', {
+        state: { patients: response.data },
+      });
+    } catch (error) {
+      console.error('Error fetching patients:', error);
     }
   };
 
@@ -41,12 +58,12 @@ const Therapist = () => {
       <h2>Therapist Form</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="label">Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} className="input-field" required />
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label className="label">Gender:</label>
-          <select name="gender" value={formData.gender} onChange={handleChange} className="select-field" required>
+          <label htmlFor="gender">Gender:</label>
+          <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required>
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -54,39 +71,36 @@ const Therapist = () => {
           </select>
         </div>
         <div className="form-group">
-          <label className="label">Specialty:</label>
-          <select name="specialty" value={formData.specialty} onChange={handleChange} className="select-field" required>
+          <label htmlFor="specialty">Specialty:</label>
+          <select id="specialty" name="specialty" value={formData.specialty} onChange={handleChange} required>
             <option value="">Select Specialty</option>
             <option value="Psychologist">Psychologist</option>
             <option value="Family Therapist">Family Therapist</option>
             <option value="IT Counselor">IT Counselor</option>
             <option value="Relationships">Relationships</option>
-            {/* Add more options as needed */}
           </select>
         </div>
         <div className="form-group">
-          <label className="label">Language:</label>
-          <select name="language" value={formData.language} onChange={handleChange} className="select-field" required>
+          <label htmlFor="language">Language:</label>
+          <select id="language" name="language" value={formData.language} onChange={handleChange} required>
             <option value="">Select Language</option>
             <option value="English">English</option>
             <option value="Swahili">Swahili</option>
             <option value="French">French</option>
-            {/* Add more options as needed */}
           </select>
         </div>
         <div className="form-group">
-          <label className="label">Race:</label>
-          <select name="race" value={formData.race} onChange={handleChange} className="select-field" required>
+          <label htmlFor="race">Race:</label>
+          <select id="race" name="race" value={formData.race} onChange={handleChange} required>
             <option value="">Select Race</option>
             <option value="White">White</option>
             <option value="Black">Black</option>
             <option value="Hispanic">Hispanic</option>
-            {/* Add more options as needed */}
           </select>
         </div>
         <div className="form-group">
-          <label className="label">Age:</label>
-          <input type="number" name="age" value={formData.age} onChange={handleChange} className="input-field" required />
+          <label htmlFor="age">Age:</label>
+          <input type="number" id="age" name="age" value={formData.age} onChange={handleChange} required />
         </div>
         <button type="submit" className="button">Submit</button>
       </form>

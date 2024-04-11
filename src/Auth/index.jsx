@@ -1,3 +1,162 @@
+// import React, { useState } from "react";
+// import "./style.css";
+// import { colors } from "../theme";
+// import Input from "./Input";
+// import Header from "./Header";
+// import Button from "../components/Button";
+// import axios from "axios";
+// import { toast, ToastContainer } from "react-toastify";
+// import { useNavigate } from "react-router-dom";
+
+// export default function Auth() {
+//   const [active, setActive] = useState("login");
+//   const navigate = useNavigate();
+//   const [arr, setArr] = useState([]);
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [confirm, setConfirm] = useState("");
+//   const Register = async () => {
+//     try {
+//       let body = {
+//         email: email,
+//         confirm: confirm,
+//         password: password,
+//         type: "USER",
+//       };
+//       const res = await axios.post("http://localhost:4000/auth/register", body);
+//       console.log(res.data);
+//       toast.success(res.data?.message, {
+//         position: "top-right",
+//         autoClose: 5000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         draggable: true,
+//         progress: undefined,
+//         theme: "colored",
+//       });
+//       setActive("login");
+//     } catch (err) {
+//       console.log(err.response.data);
+//       toast.error(err.response.data.error, {
+//         position: "top-right",
+//         autoClose: 5000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         draggable: true,
+//         progress: undefined,
+//         theme: "colored",
+//       });
+//     }
+//   };
+//   const Login = async () => {
+//     try {
+//       let body = {
+//         email: email,
+//         password: password,
+//       };
+//       const res = await axios.post("http://localhost:4000/auth/login", body);
+
+//       console.log(res.data);
+//       localStorage.setItem("tokenClare", res.data.token);
+//       toast.success("Logged in!", {
+//         position: "top-right",
+//         autoClose: 5000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         draggable: true,
+//         progress: undefined,
+//         theme: "colored",
+//       });
+//       navigate("/dashboard");
+//       setActive("login");
+//     } catch (err) {
+//       console.log(err.response.data);
+//       toast.error(err.response.data.error, {
+//         position: "top-right",
+//         autoClose: 5000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         draggable: true,
+//         progress: undefined,
+//         theme: "colored",
+//       });
+//     }
+//   };
+//   return (
+//     <div style={{ backgroundColor: colors.primary }} className="auth">
+//       <Header active={active} setActive={setActive} />
+//       {/* <button
+//         onClick={() => {
+//           if (active === "signup") {
+//             setActive("signin");
+//           } else if (active === "signin") {
+//             setActive("signup");
+//           }
+//         }}
+//       >
+//         change to {active}
+//       </button> */}
+//       {active === "login" && (
+//         <React.Fragment>
+//           <Input
+//             type="email"
+//             placeHolder="johndoe@gmail.com"
+//             value={email}
+//             setVal={setEmail}
+//           />
+//           <Input
+//             type="password"
+//             value={password}
+//             placeHolder="password"
+//             setVal={setPassword}
+//           />
+//         </React.Fragment>
+//       )}
+//       {active === "register" && (
+//         <React.Fragment>
+//           <Input
+//             type="email"
+//             placeHolder="johndoe@gmail.com"
+//             value={email}
+//             setVal={setEmail}
+//           />
+//           <Input
+//             type="password"
+//             value={password}
+//             placeHolder="password"
+//             setVal={setPassword}
+//           />
+//           <Input
+//             type="password"
+//             value={confirm}
+//             placeHolder="Confirm password"
+//             setVal={setConfirm}
+//           />
+//         </React.Fragment>
+//       )}
+//       {active === "login" ? (
+//         <Button
+//           onClick={() => {
+//             Login();
+//           }}
+//           title="Login"
+//         />
+//       ) : (
+//         <Button
+//           onClick={() => {
+//             Register();
+//           }}
+//           title="Register"
+//         />
+//       )}
+//       <ToastContainer />
+//     </div>
+//   );
+// }
 import React, { useState } from "react";
 import "./style.css";
 import { colors } from "../theme";
@@ -6,15 +165,15 @@ import Header from "./Header";
 import Button from "../components/Button";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export default function Auth() {
   const [active, setActive] = useState("login");
   const navigate = useNavigate();
-  const [arr, setArr] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+
   const Register = async () => {
     try {
       let body = {
@@ -25,31 +184,14 @@ export default function Auth() {
       };
       const res = await axios.post("http://localhost:4000/auth/register", body);
       console.log(res.data);
-      toast.success(res.data?.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.success(res.data?.message, { /* Toast success message */ });
       setActive("login");
     } catch (err) {
       console.log(err.response.data);
-      toast.error(err.response.data.error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.error(err.response.data.error, { /* Toast error message */ });
     }
   };
+
   const Login = async () => {
     try {
       let body = {
@@ -60,99 +202,57 @@ export default function Auth() {
 
       console.log(res.data);
       localStorage.setItem("tokenClare", res.data.token);
-      toast.success("Logged in!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      navigate("/dashboard");
+      toast.success("Logged in!", { /* Toast success message */ });
+      navigate("/patient");
       setActive("login");
     } catch (err) {
       console.log(err.response.data);
-      toast.error(err.response.data.error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.error(err.response.data.error, { /* Toast error message */ });
     }
   };
+
   return (
     <div style={{ backgroundColor: colors.primary }} className="auth">
       <Header active={active} setActive={setActive} />
-      {/* <button
+      
+      {/* Inputs for email and password */}
+      <Input
+        type="email"
+        placeHolder="johndoe@gmail.com"
+        value={email}
+        setVal={setEmail}
+      />
+      <Input
+        type="password"
+        value={password}
+        placeHolder="password"
+        setVal={setPassword}
+      />
+      {active === "register" && ( /* Additional input for confirm password if registering */
+        <Input
+          type="password"
+          value={confirm}
+          placeHolder="Confirm password"
+          setVal={setConfirm}
+        />
+      )}
+
+      {/* Button for either Login or Register */}
+      <Button
         onClick={() => {
-          if (active === "signup") {
-            setActive("signin");
-          } else if (active === "signin") {
-            setActive("signup");
-          }
+          active === "login" ? Login() : Register();
         }}
-      >
-        change to {active}
-      </button> */}
-      {active === "login" && (
-        <React.Fragment>
-          <Input
-            type="email"
-            placeHolder="johndoe@gmail.com"
-            value={email}
-            setVal={setEmail}
-          />
-          <Input
-            type="password"
-            value={password}
-            placeHolder="password"
-            setVal={setPassword}
-          />
-        </React.Fragment>
-      )}
+        title={active === "login" ? "Login" : "Register"}
+      />
+
+      {/* Link to sign up as a therapist */}
       {active === "register" && (
-        <React.Fragment>
-          <Input
-            type="email"
-            placeHolder="johndoe@gmail.com"
-            value={email}
-            setVal={setEmail}
-          />
-          <Input
-            type="password"
-            value={password}
-            placeHolder="password"
-            setVal={setPassword}
-          />
-          <Input
-            type="password"
-            value={confirm}
-            placeHolder="Confirm password"
-            setVal={setConfirm}
-          />
-        </React.Fragment>
+        <Link to="/signup-therapist" style={{ color: "white", textDecoration: "underline", marginTop: "10px", display: "block", textAlign: "center" }}>
+          Sign up as a therapist
+        </Link>
       )}
-      {active === "login" ? (
-        <Button
-          onClick={() => {
-            Login();
-          }}
-          title="Login"
-        />
-      ) : (
-        <Button
-          onClick={() => {
-            Register();
-          }}
-          title="Register"
-        />
-      )}
+
+      {/* Toast container for notifications */}
       <ToastContainer />
     </div>
   );
