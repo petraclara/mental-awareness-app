@@ -60,6 +60,7 @@ export default function Auth() {
 
       console.log(res.data);
       localStorage.setItem("tokenClare", res.data.token);
+      localStorage.setItem("userId", res.data.id);
       toast.success("Logged in!", {
         position: "top-right",
         autoClose: 5000,
