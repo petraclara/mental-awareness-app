@@ -9,6 +9,7 @@ import {
 } from "@minchat/react-chat-ui";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import ws from "ws";
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -21,10 +22,22 @@ export default function Chat() {
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     setUserId(userId);
-    const socket = new WebSocket(`ws://localhost:4040`);
+    const socket = new WebSocket(`ws://localhost:4040/`);
     socket.onopen = () => {
       console.log("socket open");
+      // Specify the conversation ID you want to subscribe to
+
+      const subscriptionMessage = {
+        type: "SUBSCRIBE_CONVERSATION",
+        conversationId: pathname.pathname?.split("/")[2],
+      };
+
+      console.log(subscriptionMessage);
+      socket.send(JSON.stringify(subscriptionMessage));
+
+      // Send the subscription message to the server
     };
+
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       if (message.type === "INITIAL_DATA") {
@@ -33,6 +46,7 @@ export default function Chat() {
           setMessages(message.data);
         }
       } else if (message.type === "UPDATE_DATA") {
+        console.log(message.data);
         if (message.data.length > 0 && message.dataType === "CHAT") {
           setMessages(message.data);
         }
@@ -61,6 +75,7 @@ export default function Chat() {
     setReceiverId(pathname.pathname?.split("/")[3]);
   }, [pathname]);
   const sendMessage = async (text) => {
+    const socket = new WebSocket("ws://localhost:4040/");
     const userId = localStorage.getItem("userId");
     const body = {
       conversationId: conversationId,
@@ -70,6 +85,23 @@ export default function Chat() {
     console.log(body);
     const res = await axios.post("http://localhost:4000/chat", body);
     console.log(res);
+    socket.onopen = () => {
+      console.log("socket open");
+      // Specify the conversation ID you want to subscribe to
+
+      const subscriptionMessage = {
+        type: "SUBSCRIBE_CONVERSATION",
+        conversationId: pathname.pathname?.split("/")[2],
+      };
+
+      console.log(subscriptionMessage);
+      socket.send(JSON.stringify(subscriptionMessage));
+
+      // Send the subscription message to the server
+    };
+
+    // Send the subscription message to the server
+
     //   if (res.status === 201) {
     //     navigate(`/chat/${res.data?.data?._id}`);
     //   }

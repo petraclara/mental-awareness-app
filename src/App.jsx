@@ -11,6 +11,7 @@ import NavBar from "./Dashboard/Navbar";
 import "react-toastify/dist/ReactToastify.css";
 import Messages from "./Messages";
 import Chat from "./Messages/Chat";
+import "./index.css";
 
 function App() {
   const [userPreferences, setUserPreferences] = useState([]);

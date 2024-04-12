@@ -73,6 +73,8 @@ export default function Auth() {
       });
       navigate("/dashboard");
       setActive("login");
+      localStorage.setItem("userId", res.data.id);
+      localStorage.setItem("email", res.data.email);
     } catch (err) {
       console.log(err.response.data);
       toast.error(err.response.data.error, {
