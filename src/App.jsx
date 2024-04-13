@@ -11,8 +11,8 @@ import NavBar from "./Dashboard/Navbar";
 import "react-toastify/dist/ReactToastify.css";
 import Messages from "./Messages";
 import Chat from "./Messages/Chat";
-import TherapistSignup from "./Auth/TherapistSignup";
-import TherapistDashboard from "./Dashboard/TherapistDasboard";
+// import TherapistSignup from "./Auth/TherapistSignup";
+// import TherapistDashboard from "./Dashboard/TherapistDasboard";
 function App() {
   const [userPreferences, setUserPreferences] = useState([]);
 
@@ -33,7 +33,7 @@ function App() {
             path="/dashboard"
             element={<Dashboard userPreferences={userPreferences} />}
           />
-          <Route
+          {/* <Route
             path="/patient"
             element={
               <Patient
@@ -42,9 +42,9 @@ function App() {
               />
             }
           />
-          <Route path="/therapist" element={<Therapist />} />
-          <Route path="/signup-therapist" element={<TherapistSignup />} />
-          <Route path="/therapist-dashboard" element={<TherapistDashboard />} />
+          <Route path="/therapist" element={<Therapist />} /> */}
+          {/* <Route path="/signup-therapist" element={<TherapistSignup />} /> */}
+          {/* <Route path="/therapist-dashboard" element={<TherapistDashboard />} /> */}
         </Routes>
       </BrowserRouter>
     </>
