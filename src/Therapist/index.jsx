@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "./style.css";
+import Navbar from '../Dashboard/Navbar';
 
 const Therapist = () => {
   const navigate = useNavigate();
@@ -54,6 +55,8 @@ const Therapist = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="container">
       <h2>Therapist Form</h2>
       <form onSubmit={handleSubmit}>
@@ -105,6 +108,7 @@ const Therapist = () => {
         <button type="submit" className="button">Submit</button>
       </form>
     </div>
+    </>
   );
 };
 

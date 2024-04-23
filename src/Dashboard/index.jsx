@@ -10,9 +10,10 @@ export default function Dashboard({ userPreferences }) {
   const [preferedTherapists, setPreferredTherapists] = useState([]);
 
   useEffect(() => {
+    const userType = localStorage.getItem('userType')
     const fetchTherapists = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/therapists');
+        const response = await axios.get(`http://localhost:4000/${userType === 'patient' ? 'therapists' : 'patients'}`);
         console.log(response.data, '....')
         const fetchedTherapists = response.data;
 
@@ -21,8 +22,9 @@ export default function Dashboard({ userPreferences }) {
         if (userPreferences.length !== 0) {
           filteredTherapists = fetchedTherapists.filter((therapist) => {
             return (
-              userPreferences.includes(therapist.specialization) ||
-              userPreferences.includes(therapist.language)
+              userPreferences.includes(therapist.specialty) ||
+              userPreferences.includes(therapist.language) ||
+              userPreferences.includes(therapist.race)
             );
           });
         }
@@ -37,13 +39,15 @@ export default function Dashboard({ userPreferences }) {
   }, [userPreferences]); // Run effect whenever userPreferences change
 
   return (
+    <>
+      <NavBar />
     <div className='dash' style={{ backgroundColor: colors.primary }}>
-      {/* <NavBar /> */}
       <div className='cardWrapper'>
         {preferedTherapists.map((therapist, index) => (
           <TherapistCard key={index} therapist={therapist} />
         ))}
       </div>
     </div>
+    </>
   );
 }

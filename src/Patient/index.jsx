@@ -3,6 +3,7 @@ import Stack from './Stack';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Correct import for useNavigate
 import "./style.css";
+import Navbar from '../Dashboard/Navbar';
 
 const Patient = ({ preferences, setPreferences }) => {
   const [preferenceOptions] = useState([
@@ -10,7 +11,7 @@ const Patient = ({ preferences, setPreferences }) => {
     'Family Therapist',
     'Couples Counselor',
     'English',
-    'Spanish',
+    'Swahili',
     'French',
     'White',
     'Black',
@@ -31,8 +32,8 @@ const Patient = ({ preferences, setPreferences }) => {
   const handleNext = async () => {
     try {
       // Make a POST request to the backend to fetch therapists based on preferences
-      const response = await axios.post(
-        'http://localhost:4000/patient-request',
+      const response = await axios.get(
+        'http://localhost:4000/prefered-therapists',
         { preferences: preferences }
       );
 
@@ -46,6 +47,8 @@ const Patient = ({ preferences, setPreferences }) => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className='container'>
       <Stack selectedPreferences={preferences} />
 
@@ -70,6 +73,7 @@ const Patient = ({ preferences, setPreferences }) => {
 
       <button onClick={handleNext}>Next</button>
     </div>
+    </>
   );
 };
 

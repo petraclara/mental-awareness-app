@@ -30,11 +30,12 @@ export default function Auth() {
       console.log({body})
       const res = await axios.post(`http://localhost:4000/${isTherapist ? 'therapists' : 'patients'}`, body);
       console.log(res);
-      // toast.success(res.data?.message, { /* Toast success message */ });
-      setActive("login");
+      localStorage.setItem('userType', `${isTherapist ? 'therapist' : 'patient'}`)
+      toast.success(res.data?.message, { /* Toast success message */ });
+      navigate('/dashboard')
     } catch (err) {
-      // console.log(err.response.data);
-      // toast.error(err.response.data.error, { /* Toast error message */ });
+      console.log(err?.response?.data);
+      toast.error(err?.response?.data?.error, { /* Toast error message */ });
     }
   };
 
@@ -69,6 +70,12 @@ export default function Auth() {
       <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       
       {/* Inputs for email and password */}
+      <input
+        type="text"
+        placeHolder="Jane Doe"
+        value={formData.name}
+        onChange={(e) => setFormData((prevData) => ({...prevData, name: e.target.value}))}
+      />
       <input
         type="email"
         placeHolder="johndoe@gmail.com"
