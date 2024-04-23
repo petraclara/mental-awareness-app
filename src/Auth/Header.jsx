@@ -1,19 +1,19 @@
 import React from "react";
 import "./style.css";
 
-export default function Header({ active, setActive }) {
+export default function Header({ isLogin, setIsLogin }) {
   return (
     <div className="headerWrapper">
       <div
-        className={`${active === "register" ? "buttonTitle" : "buttonTitle2"}`}
-        onClick={() => setActive("register")}
+        className={`${isLogin ? "buttonTitle" : "buttonTitle2"}`}
+        onClick={() => setIsLogin(false)}
       >
         Register
       </div>
 
       <div
-        onClick={() => setActive("login")}
-        className={`${active === "login" ? "buttonTitle" : "buttonTitle2"}`}
+        onClick={() => setIsLogin(true)}
+        className={`${isLogin ? "buttonTitle" : "buttonTitle2"}`}
       >
         Login
       </div>

@@ -12,14 +12,14 @@ export default function TherapistCard({ therapist }) {
     >
       <div>
         <Avatar
-          alt={therapist.firstname}
+          alt={therapist.name}
           src='https://hostapp.s3.amazonaws.com/hostReg9e6c8d06603e72f83ca2780f070256ee.jpg'
           sx={{ width: 100, height: 100 }}
           style={{ resizeMode: 'contain' }}
         />
       </div>
       <div className='info'>
-        <p className='infoTitle'>{`${therapist.firstName} ${therapist.lastName}`}</p>
+        <p className='infoTitle'>{therapist.name}</p>
         <div className='infoBottom'>
           <div style={{ marginRight: '30px' }}>
             <button

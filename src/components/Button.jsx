@@ -6,7 +6,7 @@ export default function Button({ onClick, title, width }) {
   return (
     <button
       onClick={onClick}
-      style={{ borderColor: colors.border, width: width ? `${width}%` : "20%" }}
+      style={{ borderColor: colors.border, width: width ? `${width}%` : "30%" }}
       className="btn_started"
     >
       {title}

@@ -22,7 +22,7 @@ const Therapist = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/therapist/add', formData);
+      const response = await axios.post('http://localhost:4000/patients', formData);
       console.log('Form submission successful:', response.data);
       setFormData({
         name: '',
@@ -41,7 +41,7 @@ const Therapist = () => {
   const navigateToDashboard = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:4000/therapist-request', // Adjust the endpoint accordingly
+        'http://localhost:4000/patients', // Adjust the endpoint accordingly
         formData // Pass any additional parameters as needed
       );
 
