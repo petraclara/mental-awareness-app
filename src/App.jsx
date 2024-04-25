@@ -12,6 +12,7 @@ import Messages from "./Messages";
 import Chat from "./Messages/Chat";
 import TherapistSignup from "./Auth/TherapistSignup";
 import TherapistDashboard from "./Dashboard/TherapistDasboard";
+import UserProfile from "./UserProfile";
 function App() {
   const [userPreferences, setUserPreferences] = useState([]);
   const [showNav, serShowNav] = useState(true)
@@ -42,6 +43,7 @@ function App() {
             }
           />
           <Route path="/therapist" element={<Therapist />} />
+          <Route path="/therapists/:therapistId" element={<UserProfile />} />
           {/* <Route path="/signup-therapist" element={<TherapistSignup />} /> */}
           {/* <Route path="/therapist-dashboard" element={<TherapistDashboard />} /> */}
           

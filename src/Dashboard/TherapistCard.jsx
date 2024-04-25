@@ -3,8 +3,11 @@ import React from 'react';
 import Button from '../components/Button';
 import './card.css';
 import { colors } from '../theme';
+import { useNavigate } from 'react-router-dom';
 
 export default function TherapistCard({ therapist }) {
+  const navigate = useNavigate()
+
   return (
     <div
       className='Infocard'
@@ -25,6 +28,7 @@ export default function TherapistCard({ therapist }) {
             <button
               // style={{ border: `1px solid ${colors.border}`, color: "#FFF" }}
               className='infoBio'
+              onClick={() => navigate(`/therapists/${therapist._id}`)}
             >
               Bio
             </button>

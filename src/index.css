@@ -58,6 +58,21 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.profile-attr {
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
